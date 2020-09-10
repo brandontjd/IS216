@@ -35,8 +35,14 @@
         // HINT: You need to APPEND additional HTML to table_data
         
         // WRITE YOUR CODE HERE
-
-
+        for (friend_array of friends) {
+            table_data += '<tr> \ ';
+            for (attributes of friend_array) {
+                var row = '<td>' + attributes + '</td> \ ';
+                table_data = table_data + row;
+            }
+            table_data += '</tr> \ ';
+        }
 
         // Once table_data is completed
         // It will be used by JavaScript code below (inside body)

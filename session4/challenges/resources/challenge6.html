@@ -29,6 +29,20 @@
         */
 
         // WRITE YOUR CODE HERE
+        var user_num = prompt('Select an integer between 1 and 10 (both inclusive)');
+
+        if ((user_num < 1) || (user_num > 10)) {
+            alert('Hello Hello Invalid Input!');
+            Number(user_num);
+        }
+        else {
+            var lucky_number = Math.floor((Math.random() * 10) + 1);
+            if (user_num == lucky_number) {
+                alert('Lucky number is ' + lucky_number + '! Have a nice day!')
+            } else {
+                alert('Lucky number is ' + lucky_number + '! Ouch... try again next time!!')
+            }
+        }
 
     </script>
 
