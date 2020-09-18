@@ -61,7 +61,9 @@ function show_num_words() {
             var text = `(${lengths[i]} Words)`;
             var num = document.createElement('li');
             var node = document.createTextNode(text);
+            
             num.appendChild(node);
+            num.innerHTML = "<b>" + num.innerText + "</b>";
             paragraphs[i].insertBefore(num,paragraphs[i].childNodes[0]);
         }
 
