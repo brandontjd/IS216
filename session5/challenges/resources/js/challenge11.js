@@ -61,7 +61,7 @@ const reviews = {
         "231 Hudson St, New York City, NY 10013-1412, USA",
         "+1 212-342-7000",
         "Ranked #63 of 508 Hotels in New York City",     
-        "sm_hotel3.jpg",   
+        "sm_hotel4.jpg",   
         {
             "Eddie V." : "Everything from our stay at Arlo Soho from check in to check out was excellent! I especially have to give a shout out to the housekeeping staff! They were especially thorough with cleaning the rooms and went above and beyond I have seen at any other hotel I have been! I highly recommend anyone coming to visit NYC to stay at this property and I promise you will not be disappointed!",
             
@@ -98,18 +98,79 @@ function display_reviews() {
     // e.g. How about id attribute?
     //      Is this button's id... used by another code later on (see below - collapse div).
     // e.g. What about the hotel's name?
+    // var hotel_button_div = document.getElementById('hotel_button_div');
+    // console.log(hotel_button_div);
+    // hotel_button_div.innerHTML = `
+    //         <button style="margin-bottom: 5px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hotel1">
+    //             Hotel name placeholder 1
+    //         </button>
+
+    //         <button style="margin-bottom: 5px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hotel2">
+    //             Hotel name placeholder 2
+    //         </button>
+    // `;
+
     var hotel_button_div = document.getElementById('hotel_button_div');
-    console.log(hotel_button_div);
-    hotel_button_div.innerHTML = `
-            <button style="margin-bottom: 5px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hotel1">
-                Hotel name placeholder 1
-            </button>
+    var hotel_info_div = document.getElementById('hotel_info_div');
 
-            <button style="margin-bottom: 5px" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#hotel2">
-                Hotel name placeholder 2
-            </button>
-    `;
+    var keys = Object.keys(reviews);
+    var sidebar_buttons = '';
+    var main_body = '';
 
+    for (i = 1; i < keys.length+1; i++) {
+        var target = "hotel" + i + 1;
+        sidebar_buttons += `<button style="margin-bottom: 5px; width:100%;" class="btn btn-primary" type="button" data-toggle="collapse" data-target="#${target}">${keys[i-1]}</button>`;
+
+        var hotel = reviews[keys[i-1]];
+        console.log(target);
+        if (i==1) {
+            var status = 'show';
+        } else{
+            status = '';
+        }
+        main_body += `<div class="collapse ${status}" id="${target}">
+                <div class="card card-body">
+                    <div class="container-fluid">
+                        <h2 style="font-weight: bold">${keys[i-1]}</h2>
+                        <ul class="list-unstyled">
+                            <li>
+                                <img src="images/${hotel[3]}">
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marked-alt"></i>
+                                ${hotel[0]}
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                ${hotel[1]}
+                            </li>
+                            <li>
+                                <i class="fas fa-star"></i>
+                                ${hotel[2]}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <hr class="my-3">
+
+                    <div class="container-fluid">`;
+        for (reviewer in hotel[4]) {
+            main_body += `<blockquote class="blockquote">
+                            <p class="mb-0">${hotel[4][reviewer]}</p>
+                            <footer class="blockquote-footer">
+                                <cite>${reviewer}</cite>
+                            </footer>
+                            </blockquote>`;
+        }
+
+        main_body += `</div> <!-- End of Quotes -->
+            </div> <!-- End of Card Body -->
+        </div> <!-- End of Collapse -->`;
+    }
+
+    hotel_button_div.innerHTML = sidebar_buttons;
+    hotel_info_div.innerHTML = main_body;
+    console.log(sidebar_buttons);
 
     // [IMPORTANT]
     // This code populates Populate 'hotel_info_div' section of HTML.
@@ -129,66 +190,66 @@ function display_reviews() {
     // e.g. Also note that each hotel has 5 customer reviews.
     //      Think about how you'd construct a String... 
     //      containing all 5 reviews (review comment & reviewer's name)
-    var hotel_button_div = document.getElementById('hotel_info_div');
-    console.log(hotel_info_div);
-    hotel_info_div.innerHTML = `
-            <!-- Hotel 1 -->
-            <div class="collapse show" id="hotel1">
-                <div class="card card-body">
-                    <div class="container-fluid">
-                        <h2 style="font-weight: bold">Hotel Name Goes Here - Hotel 1</h2>
-                        <ul class="list-unstyled">
-                            <li>
-                                <img src="images/sm_hotel_placeholder.jpg">
-                            </li>
-                            <li>
-                                <i class="fas fa-map-marked-alt"></i>
-                                123 Simpson Avenue, New York City, NY 10014-1234, USA
-                            </li>
-                            <li>
-                                <i class="fas fa-phone"></i>
-                                +1 212-555-1234
-                            </li>
-                            <li>
-                                <i class="fas fa-star"></i>
-                                Ranked #100 of 700 Hotels in New York City
-                            </li>
-                        </ul>
-                    </div>
+    // var hotel_button_div = document.getElementById('hotel_info_div');
+    // console.log(hotel_info_div);
+    // hotel_info_div.innerHTML = `
+    //         <!-- Hotel 1 -->
+    //         <div class="collapse show" id="hotel1">
+    //             <div class="card card-body">
+    //                 <div class="container-fluid">
+    //                     <h2 style="font-weight: bold">Hotel Name Goes Here - Hotel 1</h2>
+    //                     <ul class="list-unstyled">
+    //                         <li>
+    //                             <img src="images/sm_hotel_placeholder.jpg">
+    //                         </li>
+    //                         <li>
+    //                             <i class="fas fa-map-marked-alt"></i>
+    //                             123 Simpson Avenue, New York City, NY 10014-1234, USA
+    //                         </li>
+    //                         <li>
+    //                             <i class="fas fa-phone"></i>
+    //                             +1 212-555-1234
+    //                         </li>
+    //                         <li>
+    //                             <i class="fas fa-star"></i>
+    //                             Ranked #100 of 700 Hotels in New York City
+    //                         </li>
+    //                     </ul>
+    //                 </div>
 
-                    <hr class="my-3">
+    //                 <hr class="my-3">
 
-                    <div class="container-fluid">
-                        <blockquote class="blockquote">
-                            <p class="mb-0">The review comments goes here.</p>
-                            <footer class="blockquote-footer">
-                                <cite>Homer Simpson</cite>
-                            </footer>
-                        </blockquote>
+    //                 <div class="container-fluid">
+    //                     <blockquote class="blockquote">
+    //                         <p class="mb-0">The review comments goes here.</p>
+    //                         <footer class="blockquote-footer">
+    //                             <cite>Homer Simpson</cite>
+    //                         </footer>
+    //                     </blockquote>
 
-                        <blockquote class="blockquote">
-                            <p class="mb-0">The review comments goes here.</p>
-                            <footer class="blockquote-footer">
-                                <cite>Lisa Simpson</cite>
-                            </footer>
-                        </blockquote>
+    //                     <blockquote class="blockquote">
+    //                         <p class="mb-0">The review comments goes here.</p>
+    //                         <footer class="blockquote-footer">
+    //                             <cite>Lisa Simpson</cite>
+    //                         </footer>
+    //                     </blockquote>
 
-                        <blockquote class="blockquote">
-                            <p class="mb-0">The review comments goes here.</p>
-                            <footer class="blockquote-footer">
-                                <cite>Bart Simpson</cite>
-                            </footer>
-                        </blockquote>
-                    </div> <!-- End of Quotes -->
-                </div> <!-- End of Card Body -->
-            </div> <!-- End of Collapse -->
+    //                     <blockquote class="blockquote">
+    //                         <p class="mb-0">The review comments goes here.</p>
+    //                         <footer class="blockquote-footer">
+    //                             <cite>Bart Simpson</cite>
+    //                         </footer>
+    //                     </blockquote>
+    //                 </div> <!-- End of Quotes -->
+    //             </div> <!-- End of Card Body -->
+    //         </div> <!-- End of Collapse -->`;
 
-            <!-- Hotel 2 -->
-            <div class="collapse" id="hotel2" aria-labelledby="hotel2">
-                <div class="card card-body">
-                    Hotel 2 info goes here...
-                </div>
-            </div>
-    `;
+    //         <!-- Hotel 2 -->
+    //         <div class="collapse" id="hotel2" aria-labelledby="hotel2">
+    //             <div class="card card-body">
+    //                 Hotel 2 info goes here...
+    //             </div>
+    //         </div>
+    // `;
 
 }
