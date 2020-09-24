@@ -26,3 +26,18 @@ function show_heroes(hero_class) {
 
 
 }
+
+function api_call(hero_class) {
+    //Step 1 create variable to hold request
+    var request = new XMLHttpRequest(); 
+
+    //Step 2 write function to check status
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 200) {
+            
+        }
+    }
+
+    
+
+}
