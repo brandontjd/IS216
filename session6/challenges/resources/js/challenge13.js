@@ -74,7 +74,7 @@ function call_api(gender) {
         }
     }
 
-    var url = 'http://krazywoman.com/krazystars/api/star/search.php?g=' + gender ; 
+    var url = 'https://krazywoman.com/krazystars/api/star/search.php?g=' + gender ; 
 
     console.log(url);
     request.open("GET",url,true);

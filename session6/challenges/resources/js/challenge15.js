@@ -10,7 +10,7 @@ function display_default() {
     // Display all heroes
     
     // YOUR CODE GOES HERE
-    api_call('http://krazywoman.com/krazymlbb/api/hero/read.php');
+    api_call('https://krazywoman.com/krazymlbb/api/hero/read.php');
 }
 
 // Given a hero_class (tank, fighter, mage, asassin, marksman, support, all)
@@ -24,9 +24,9 @@ function show_heroes(hero_class) {
 
     // YOUR CODE GOES HERE
     if (hero_class != 'all') {
-        var url = 'http://krazywoman.com/krazymlbb/api/hero/search.php?c='+hero_class;
+        var url = 'https://krazywoman.com/krazymlbb/api/hero/search.php?c='+hero_class;
     } else {
-        var url = 'http://krazywoman.com/krazymlbb/api/hero/read.php';
+        var url = 'https://krazywoman.com/krazymlbb/api/hero/read.php';
     }
     api_call(url);
 }
